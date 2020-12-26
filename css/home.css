@@ -1,72 +1,84 @@
-body {
+#nav-drawer {
+    position: relative;
+    width: 60px;
+    text-align: center;
+    margin-left: auto;
+}
+
+#nav-drawer p {
     margin: 0;
-    display: flex;
-    min-height: 100vh;
-}
-
-aside {
-    width: 25%;
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
+    font-size: 10px;
+  }
+  
+  /*チェックボックス等は非表示に*/
+  .nav-unshown {
+    display:none;
+  }
+  
+  /*アイコンのスペース*/
+  #nav-open {
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    vertical-align: middle;
     margin: 0;
-}
-
-div {
-    height: 300px;
-    margin-top: auto;
-}
-
-main {
-    width: 700px;
-    margin: 0 auto;
-}
-
-.open, .close {
-    display: none;
-}
-
-/*消すのではなく隠す(idとforの関係を残す)*/
-input[type="checkbox"] {
+  }
+  
+  /*ハンバーガーアイコンをCSSだけで表現*/
+  #nav-open span, #nav-open span:before, #nav-open span:after {
     position: absolute;
-    left: -50vw;
+    height: 3px;/*線の太さ*/
+    width: 30px;/*長さ*/
+    border-radius: 3px;
+    background: #555;
+    display: block;
+    content: '';
+    cursor: pointer;
+  }
+  #nav-open span:before {
+    bottom: -8px;
+  }
+  #nav-open span:after {
+    bottom: -16px;
+  }
+  
+  /*閉じる用の薄黒カバー*/
+  #nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    z-index: 99;
+    top: 0;/*全体に広がるように*/
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    transition: 0.3s ease-in-out;
+  }
+
+  #nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    width: 90%;
+    max-width: 330px;
+    height: 100%;
+    background: #ffffff;
+    transition: 0.3s ease-in-out;
+    -webkit-transform: translateX(105%);
+    transform: translateX(105%);
 }
 
-@media screen and (max-width: 1000px) {
-    main {
-        width: 100%;
-        padding-top: 50px;
-    }
-
-    .open, .close {
-        display: block;
-    }
-
-    .open {
-        position: absolute;
-    }
-    
-    aside {
-        position: absolute;
-        left: -250px;
-        height: 100%;
-        transition: all 0.2s;
-        background: #ffffff;
-    }
-
-    input[type="checkbox"]:checked ~ aside {
-        left: 0;
-    }
-
-    input[type="checkbox"]:checked ~ .back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-    }
-}
+  /*チェックが入ったらもろもろ表示*/
+  #nav-input:checked ~ #nav-close {
+    display: block;/*カバーを表示*/
+    opacity: .5;
+  }
+  
+  #nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*中身を表示（右へスライド）*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+  }
+  
