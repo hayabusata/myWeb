@@ -1,84 +1,82 @@
-#nav-drawer {
-    position: relative;
-    width: 60px;
-    text-align: center;
-    margin-left: auto;
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
 }
 
-#nav-drawer p {
-    margin: 0;
-    font-size: 10px;
-  }
-  
-  /*チェックボックス等は非表示に*/
-  .nav-unshown {
-    display:none;
-  }
-  
-  /*アイコンのスペース*/
-  #nav-open {
-    display: inline-block;
-    width: 30px;
-    height: 22px;
-    vertical-align: middle;
-    margin: 0;
-  }
-  
-  /*ハンバーガーアイコンをCSSだけで表現*/
-  #nav-open span, #nav-open span:before, #nav-open span:after {
-    position: absolute;
-    height: 3px;/*線の太さ*/
-    width: 30px;/*長さ*/
-    border-radius: 3px;
-    background: #555;
-    display: block;
-    content: '';
-    cursor: pointer;
-  }
-  #nav-open span:before {
-    bottom: -8px;
-  }
-  #nav-open span:after {
-    bottom: -16px;
-  }
-  
-  /*閉じる用の薄黒カバー*/
-  #nav-close {
-    display: none;/*はじめは隠しておく*/
-    position: fixed;
-    z-index: 99;
-    top: 0;/*全体に広がるように*/
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    transition: 0.3s ease-in-out;
-  }
-
-  #nav-content {
-    overflow: auto;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9999;
-    width: 90%;
-    max-width: 330px;
-    height: 100%;
-    background: #ffffff;
-    transition: 0.3s ease-in-out;
-    -webkit-transform: translateX(105%);
-    transform: translateX(105%);
+main {
+    width: 80vw;
 }
 
-  /*チェックが入ったらもろもろ表示*/
-  #nav-input:checked ~ #nav-close {
-    display: block;/*カバーを表示*/
-    opacity: .5;
-  }
-  
-  #nav-input:checked ~ #nav-content {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);/*中身を表示（右へスライド）*/
-    box-shadow: 6px 0 25px rgba(0,0,0,.15);
-  }
-  
+.open, .close, input[type="checkbox"] {
+    display: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sideList {
+    width: 200px;
+    min-width: 100px;
+}
+
+/* .sideFooter {
+    height: 300px;
+    margin-top: auto;
+} */
+
+@media screen and (max-width: 1000px) {
+    .open, .close, input[type="checkbox"] {
+        display: block;
+    }
+
+    input[type="checkbox"] {
+        position: absolute;
+        left: -20px;
+    }
+
+    .close {
+        /* position: relative; */
+        text-align: right;
+    }
+
+    .sideList {
+        position: absolute;
+        right: -250px;
+        transition: 0.5s;
+        height: 100vh;
+    }
+
+    main {
+        width: 100vw;
+    }
+
+    input[type="checkbox"]:checked ~ .sideList {
+        position: absolute;
+        background-color: #ffffff;
+        right: 0;
+    }
+
+    input[type="checkbox"]:checked ~ .open {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ .back {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+}
