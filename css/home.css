@@ -1,12 +1,27 @@
 body {
-    display: flex;
     width: 100vw;
     height: 100vh;
     margin: 0;
     overflow-x: hidden;
 }
 
+header {
+    display: flex;
+    background-color: darkgray;
+}
+
+.title {
+    width: 100vw;
+}
+
 main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+article {
     width: 80vw;
 }
 
@@ -29,6 +44,7 @@ aside {
 .sideList {
     width: 200px;
     min-width: 100px;
+    padding: 0;
 }
 
 /* .sideFooter {
@@ -47,7 +63,6 @@ aside {
     }
 
     .close {
-        /* position: relative; */
         text-align: right;
     }
 
@@ -58,7 +73,7 @@ aside {
         height: 100vh;
     }
 
-    main {
+    article {
         width: 100vw;
     }
 
